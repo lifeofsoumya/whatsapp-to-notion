@@ -2,3 +2,4 @@ to-do-list-export.txt
 node_modules
 package-lock.json
 .env
+output/*

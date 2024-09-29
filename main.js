@@ -1,6 +1,7 @@
 const fs = require("node:fs")
 const path = require("path")
-const { sendToNotion } = require("./services/notion")
+const { sendToNotion } = require("./services/notion");
+const { copyItems } = require("./services/copiable");
 
 async function fileRead() {
     return new Promise((resolve, reject) => {
@@ -19,6 +20,7 @@ async function fileRead() {
 function parseData(data) {
     const lines = data.split('\n')
     const messages = []
+    const excludeTerms = ['<Media omitted>', 'test message']
 
     lines.forEach(line => {
         const match = line.match(/(\d{1,2}\/\d{1,2}\/\d{2,4}, \s*\d{1,2}:\d{2}\s*[APM]{2}) - (.*?): (.*)/);
@@ -27,7 +29,7 @@ function parseData(data) {
             const timeStamp = new Date(match[1]).toISOString()
             const author = 'meXD'
             const message = match[3];
-            messages.push({ timeStamp, message});
+            if(!excludeTerms.includes(message)) messages.push({ timeStamp, message});
         }
     })
     return messages;
