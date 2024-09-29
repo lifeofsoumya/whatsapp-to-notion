@@ -1,0 +1,16 @@
+{
+  "name": "wp-to-do-to-notion-export",
+  "version": "1.0.0",
+  "main": "exp.js",
+  "scripts": {
+    "start": "node main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5"
+  }
+}
